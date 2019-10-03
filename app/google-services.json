@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "798777951645",
+    "firebase_url": "https://bdcash-1910d.firebaseio.com",
+    "project_id": "bdcash-1910d",
+    "storage_bucket": "bdcash-1910d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:798777951645:android:ddd698ab2fbf99c8a01b74",
+        "android_client_info": {
+          "package_name": "com.example.shariful.bdcash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "798777951645-1dl8e2ff5mt9ghvn76fpdbm9ma9ffulv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shariful.bdcash",
+            "certificate_hash": "abd191277d537ef560d15207d2a9ce71dd7a068c"
+          }
+        },
+        {
+          "client_id": "798777951645-kuiekuoqeobmo1s6s2lp9ldscefj3d4e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZzF7zACsrNsciwmvAfYltumekNkD9o6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "798777951645-kuiekuoqeobmo1s6s2lp9ldscefj3d4e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

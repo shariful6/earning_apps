@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">BdCash</string>
+
+    <string name="rules1">
+        <b> 1. Ad View :</b> Ad Load বাটনে ক্লিক করার পর Ad Show  হলে ৬ সেকেন্ড অপেক্ষা করে  Ad  কেটে দিতে হবে।  Ad কেটে দেয়ার পর পুনরায় Load Ad  বাটনে ক্লিক করতে হবে। এবাবে ১৯ টা Ad View করতে হবে।
+             </string>
+
+    <string name="rules2">
+<b>2. Ad Click :</b> ১৯ টা Ad দেখার পর ২০ নাম্বার Ad  এ ক্লিক করে ৫০ সেকেন্ড অপেক্ষা করতে হবে। ৫০ সেকেন্ড অপেক্ষা না করলে টাকা যোগ হবে না। ৫০ সেকেন্ড অপেক্ষা করার পর বেক বাটন প্রেস করে Ad কেটে দিতে হবে। তাহলেই আপনার ক্লিক সফল হবে এবং টাকা যোগ হবে। এবাবে প্রতি দিন ২ ঘন্টা পর পর দিনে ৪ টা ক্লিক করতে পারবেন। দিনে ৪ টার বেসি ক্লিক করলেও Invalid Click হিসাবে গন্য হবে।
+</string>
+
+    <string name="rules3">
+<b>3. Invalid Clik:</b> ১৯ টা Ad View করার আগে ক্লিক করলে ক্লিক টি Invalid Click  হিসাবে গন্য হবে এবং উপরে উল্লেখিত সময় অপেক্ষা না করলেও Invalid Clik হিসাবে গন্য হবে। ৩ টা Invalid Click  হলে আপনার  Account  বাতিল হবে এবং  Payment পাবেন না।
+</string>
+
+    <string name="rules4">
+<b>4. Withdraw:</b> কমপক্ষে  ১০ টাকা হলে Mobile Recharge নিতে পারবেন এবং কমপক্ষে ৫০ টাকা হলে Bkash নিতে পারবেন। Withdraw Request  "রবি থেকে বুধ" বার এর মধ্যে  দিতে  পারবেন কিন্তু টাকা পাবেন প্রতি শুক্রবার। নিয়ম মেনে কাজ করলে ১০০% টাকা পাবেন।
+</string>
+
+    <string name="rules5">
+<b>5. Facebook Group:</b>  যেকোন কিছু জানার জন্য আমাদের Facebook Group এ জয়েন হতে হবে।
+</string>
+
+    <string name="link">https://www.facebook.com/groups/2849973685036306/</string>
+
+
+</resources>

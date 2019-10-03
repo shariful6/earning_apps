@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#6afaa1"
+    android:layout_height="match_parent"
+    tools:context=".SignInActivity">
+
+    <EditText
+        android:id="@+id/emailID_signIn"
+        android:layout_width="359dp"
+        android:layout_height="46dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:background="#FFF"
+        android:gravity="center"
+        android:hint="Email"
+        android:textColor="@color/colorAccent"
+        />
+
+    <EditText
+        android:id="@+id/passID_signIn"
+        android:layout_width="359dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:hint="Password"
+        android:background="#FFF"
+        android:layout_gravity="center"
+        android:inputType="textPassword"
+        android:textColor="@color/colorAccent"
+        />
+
+    <Button
+        android:id="@+id/singInBtnID"
+        android:layout_width="162dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorAccent"
+        android:text="Sign In"
+        android:textAllCaps="false"
+        android:textColor="#FFFF"
+        android:textSize="25dp" />
+    <TextView
+        android:id="@+id/tv_go_to_signUpId"
+        android:layout_marginTop="10dp"
+        android:textSize="15dp"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:text="Are You Not Registered ?? Sign Up Here"
+        android:layout_height="wrap_content" />
+
+    <ProgressBar
+        android:id="@+id/progressbarID"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

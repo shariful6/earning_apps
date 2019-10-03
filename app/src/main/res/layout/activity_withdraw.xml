@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#5bc2e7"
+    tools:context=".WithdrawActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="80dp"
+            android:background="#eadf42"
+            android:padding="3dp"
+            android:text="Your Balance: "
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/balanceId"
+            android:layout_width="91dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="6dp"
+            android:background="#fff"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="30dp" />
+
+    </LinearLayout>
+
+
+
+    <RadioGroup
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="25dp"
+        android:id="@+id/radioGrpID"
+        android:layout_gravity="center"
+        android:layout_width="305dp"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="85dp">
+
+        <RadioButton
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#dcefcd"
+            android:text="Recharge"
+            android:layout_marginLeft="30dp"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:layout_width="105dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="20dp"
+            android:background="#dcefcd"
+            android:text="Bkash"
+            android:textSize="20dp" />
+
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/mobileID"
+        android:layout_width="242dp"
+        android:layout_height="47dp"
+        android:layout_gravity="center"
+        android:background="#f2f2f2"
+        android:hint="Enter Mobile Number"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="20dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="71dp"
+        tools:layout_editor_absoluteY="155dp" />
+
+    <EditText
+        android:id="@+id/amountID"
+        android:layout_width="158dp"
+        android:layout_height="46dp"
+        android:background="#f2f2f2"
+        android:hint="Enter Amount"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        android:textColor="#000"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="113dp"
+        tools:layout_editor_absoluteY="232dp" />
+
+    <Button
+        android:id="@+id/submitBtnId"
+        android:layout_width="118dp"
+        android:layout_height="wrap_content"
+        android:background="#99e114"
+        android:text="Submit"
+        android:textAllCaps="false"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="300dp"
+        tools:ignore="MissingConstraints" />
+
+
+
+
+
+</LinearLayout>
