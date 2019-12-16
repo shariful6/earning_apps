@@ -37,10 +37,17 @@ public class WorkActivity extends AppCompatActivity {
     private boolean mTimerRunning;
     private boolean mTimerRunning2;
 
-    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+    private boolean mTimerRunning3;
 
+    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
     private long mTimeLeftInMillis2 = START_TIME_IN_MILLIS2;
 
+    //for break time
+    private static final long START_TIME_IN_MILLISB = 600000;
+    private CountDownTimer mCountDownTimerB;
+    private boolean mTimerRunningB;
+    private long mTimeLeftInMillisB;
+    private long mEndTime;
 
 
 
@@ -49,9 +56,10 @@ public class WorkActivity extends AppCompatActivity {
     String key;
     String value;
     String value2;
+    String value3;
 
 
-    private TextView number,invalidTV;
+    private TextView numberTV,invalidTV;
     private AdView madView;
     private Button ads,withdrawBtn,rulesBtn;
     private InterstitialAd mInterstitialAd;
@@ -84,7 +92,7 @@ public class WorkActivity extends AppCompatActivity {
         Balance_tv=findViewById(R.id.balance_tvID);
         withdrawBtn=findViewById(R.id.withdrawBtnID);
         rulesBtn=findViewById(R.id.tutorialBtnID);
-        number=findViewById(R.id.numID);
+        numberTV=findViewById(R.id.numID);
         madView=findViewById(R.id.adView);
         ads=findViewById(R.id.bnID);
 
@@ -107,6 +115,7 @@ public class WorkActivity extends AppCompatActivity {
 
            retriveData();
            retriveData2();
+           retriveView();
 
         mInterstitialAd.setAdListener(new AdListener() {  //interestitial ad listener
             @Override
@@ -136,7 +145,6 @@ public class WorkActivity extends AppCompatActivity {
                 startTimerClick();
                 updateCountDownTextClick();
 
-
             }
             @Override
             public void onAdLeftApplication() {
@@ -150,9 +158,17 @@ public class WorkActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //cashout code here
-                Intent intent =new Intent(WorkActivity.this,WithdrawActivity.class);
-                intent.putExtra("value",value);
-                startActivity(intent);
+                if(balance>=10)
+                {
+                    Intent intent =new Intent(WorkActivity.this,WithdrawActivity.class);
+                    intent.putExtra("value",value);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(WorkActivity.this, "Not enough balance !!", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });
@@ -178,18 +194,18 @@ public class WorkActivity extends AppCompatActivity {
                 {
                     mInterstitialAd.show();
                     count++;
-                    number.setText(""+String.valueOf(count));
-
-
+                   // numberTV.setText(""+String.valueOf(count));
+                    saveView();
 
                     startTimer();
                     updateCountDownText();
-
+                        /*
                     if(count==20)
                     {
                         count=0;
                         Toast.makeText(WorkActivity.this, "Click on the Ad !!", Toast.LENGTH_LONG).show();
                     }
+                    */
 
                 }
                 else{
@@ -256,6 +272,7 @@ public class WorkActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 mTimerRunning = false;
+                startTimerB();
 
             }
         }.start();
@@ -302,7 +319,7 @@ public class WorkActivity extends AppCompatActivity {
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d",seconds);
         Toast.makeText(this, "Please wait: "+timeLeftFormatted, Toast.LENGTH_SHORT).show();
         //tv.setText(timeLeftFormatted);
-        int c=Integer.parseInt(number.getText().toString());
+        int c=Integer.parseInt(numberTV.getText().toString());
         if(seconds==00&&c==20)
         {
             balance=balance+2;
@@ -338,8 +355,8 @@ public class WorkActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()){
                    value = dataSnapshot.getValue(String.class);
                    Balance_tv.setText(value);
-
                    taka=Integer.parseInt(value);
+
                    balance=taka;
                    // Toast.makeText(WorkActivity.this, "Balance: "+value, Toast.LENGTH_SHORT).show();
                 }
@@ -405,8 +422,140 @@ public class WorkActivity extends AppCompatActivity {
         });
     }
 
+    public void saveView()
+    {
+        numberTV.setText(""+String.valueOf(count));
+        if(count>20)
+        {
+            count=0;
+            numberTV.setText(""+String.valueOf(count));
+        }
+        String view=numberTV.getText().toString();
+        key=databaseReference.getKey();
+        databaseReference.child(uId).child("View").setValue(view);
+
+    }
+    public void retriveView()
+    {
+
+        databaseReference.child(uId).child("View").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+                    value3 = dataSnapshot.getValue(String.class);
+                    numberTV.setText(value3);
+
+                    int v=Integer.parseInt(value3);
+                    count=v;
+                    // Toast.makeText(WorkActivity.this, "Balance: "+value, Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    //Toast.makeText(WorkActivity.this, "00", Toast.LENGTH_SHORT).show();
+                    numberTV.setText("0");
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Toast.makeText(WorkActivity.this, "Failed!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     //////////////////////////////////////////////////////////////////////////////////////////////
                             //For working break time  ////////////////////////
+
+
+    private void startTimerB() {
+        mEndTime = System.currentTimeMillis() + mTimeLeftInMillisB;
+
+        mCountDownTimerB = new CountDownTimer(mTimeLeftInMillisB, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftInMillisB = millisUntilFinished;
+                updateCountDownTextB();
+            }
+
+            @Override
+            public void onFinish() {
+                mTimerRunningB = false;
+                mTimeLeftInMillisB=START_TIME_IN_MILLISB;
+                updateButtonsB();
+            }
+        }.start();
+
+        mTimerRunningB = true;
+        updateButtonsB();
+    }
+
+    private void updateCountDownTextB() {
+        int minutes = (int) (mTimeLeftInMillisB / 1000) / 60;
+        int seconds = (int) (mTimeLeftInMillisB / 1000) % 60;
+        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+        showTimeTV.setText(timeLeftFormatted);
+    }
+
+    private void updateButtonsB() {
+        if (mTimerRunningB) {
+            ads.setEnabled(false);
+            ads.setText("Wait");
+        }
+        else
+            {
+            ads.setEnabled(true);
+           }
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putLong("millisLeft", mTimeLeftInMillisB);
+        editor.putBoolean("timerRunning", mTimerRunningB);
+        editor.putLong("endTime", mEndTime);
+
+        editor.apply();
+
+        if (mCountDownTimerB != null) {
+            mCountDownTimerB.cancel();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+
+        mTimeLeftInMillisB = prefs.getLong("millisLeft", START_TIME_IN_MILLISB);
+        mTimerRunningB = prefs.getBoolean("timerRunning", false);
+
+        updateCountDownTextB();
+       // updateButtons();
+
+        if (mTimerRunningB) {
+            mEndTime = prefs.getLong("endTime", 0);
+            mTimeLeftInMillisB = mEndTime - System.currentTimeMillis();
+
+            if (mTimeLeftInMillisB < 0) {
+                mTimeLeftInMillisB = 0;
+                mTimerRunningB = false;
+                updateCountDownTextB();
+               // updateButtons();
+            } else {
+                startTimerB();
+            }
+        }
+    }
+
+
+
 
 }
 

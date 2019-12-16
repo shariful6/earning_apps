@@ -17,14 +17,21 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthActionCodeException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
-    EditText email_signUp,pass_signUp;
+    EditText email_signUp,pass_signUp,name,mobile;
     Button signUpBtn;
     ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
 
+    DatabaseReference databaseReference;
+
+    String uId;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +39,23 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         this.setTitle("SignUp");
 
-        mAuth = FirebaseAuth.getInstance();
+
+        databaseReference= FirebaseDatabase.getInstance().getReference("employee");
 
         email_signUp=findViewById(R.id.emailID_signUp);
         pass_signUp=findViewById(R.id.passID_signUp);
         signUpBtn=findViewById(R.id.singUpBtnID);
+
+        name=findViewById(R.id.nameID);
+        mobile=findViewById(R.id.mobileID);
+
+
+        mAuth = FirebaseAuth.getInstance();
+
+
+
+
+
         progressBar=findViewById(R.id.progressbarID);
 
         signUpBtn.setOnClickListener(new View.OnClickListener() {
@@ -45,9 +64,6 @@ public class SignUpActivity extends AppCompatActivity {
                 register();
             }
         });
-
-
-
 
     }
 
@@ -85,6 +101,9 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
+
+                           saveUserInfo();
+
                                finish();
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(SignUpActivity.this, "SignUp Successful!!", Toast.LENGTH_SHORT).show();
@@ -106,9 +125,22 @@ public class SignUpActivity extends AppCompatActivity {
                         
                     }
                 });
+    }
 
+    private void saveUserInfo(){
+      String userName=name.getText().toString();
+      String userMobile=mobile.getText().toString();
 
+        user = mAuth.getCurrentUser();
+        uId = user.getUid();
 
+        databaseReference.child(uId).child("Name").setValue(userName);
+        databaseReference.child(uId).child("Mobile").setValue(userMobile);
 
     }
+
+
+
+
+
 }
